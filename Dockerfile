@@ -5,10 +5,10 @@ FROM tomcat:8
 LABEL maintainer="Curtis Kruse <curtis.krus@efre.net>
 
 # Copy the WAR file from the target directory to the webapps directory of Tomcat
-COPY target/your-application.war /usr/local/tomcat/webapps/
+COPY target/spring-boot-deployment.war C:\Users\t5941ck\Desktop\apache-tomcat-9.0.69\apache-tomcat-9.0.69\webapps
 
-# Expose the default Tomcat port (8080)
-EXPOSE 8080
+# Expose the default Tomcat port (8088)
+EXPOSE 8088
 
 # Start Tomcat
 CMD ["catalina.sh", "run"]
