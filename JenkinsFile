@@ -1,54 +1,59 @@
-pipeline{
+pipeline {
     agent any
+
     tools {
-      maven 'MVN_HOME'
-    }
-	
-	
-    environment {
-        DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials')
+        maven 'MVN_HOME'
     }
 
-    stages{
-       stage('Maven Build') {
-         steps {
-			// print system information
-		   sh "uname -a";
-		   
-		   // mvn build
-		   echo 'start: mvn clean package'
-           sh "mvn clean package"
-		   
-         }
-		 
-		 post {
-		   always {
-				echo "end: mvn clean package"
-		   }
-		   success {
-				junit '**/target/surefire-reports/TEST-*.xml'
-		   }
-		 }
-       }
-       
-      stage('Docker Build'){
-            steps{
-				sh "sudo docker build -t curtiskruse-final .";
+    stages {
+        stage('Maven Build') {
+            steps {
+                echo '=== Maven Build ==='
+                // Run Maven build using a Windows batch command on Windows or shell command on Linux
+                bat 'mvn clean package'
+                // OR: sh 'mvn clean package'
             }
         }
-        
-      stage('DockerHub Push'){
-            steps{
-				sh "sudo docker login -u ${DOCKER_HUB_CREDENTIALS_USR} -p ${DOCKER_HUB_CREDENTIALS_PSW}"
-                sh "sudo docker push curtiskruse-final:latest"
+
+        stage('Docker Build') {
+            steps {
+                echo '=== Docker Build ==='
+                // Build Docker image from the WAR file
+                echo 'Building Docker image...'
+                script {
+                    def dockerHubCredentials = credentials('dockerhub-credentials')
+                    sh "docker build -t curtiskruse-final ."
+                }
             }
         }
-  
-      stage('Docker Deploy'){
-            steps{
-				sh "ansible-playbook client.yaml"
+
+        stage('DockerHub Push') {
+            steps {
+                echo '=== DockerHub Push ==='
+                // Log in to DockerHub using credentials
+                script {
+                    def dockerHubCredentials = credentials('dockerhub-credentials')
+                    withCredentials([usernamePassword(credentialsId: dockerHubCredentials.id, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    }
+                }
+
+                // Push Docker image to DockerHub
+                echo 'Pushing Docker image to DockerHub...'
+                sh 'docker push curtiskruse-final'
             }
-        }        
+        }
+
+        stage('Docker Deploy') {
+            steps {
+                echo '=== Docker Deploy ==='
+                // Use Ansible to deploy the Docker container
+                echo 'Running Ansible playbook...'
+                ansiblePlaybook(
+                    playbook: 'path/to/your/deploy-playbook.yml',
+                    inventory: 'path/to/your/inventory/file'
+                )
+            }
+        }
     }
-    
 }
