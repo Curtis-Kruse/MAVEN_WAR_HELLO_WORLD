@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo '=== Maven Build ==='
                 // Run Maven build using a Windows batch command on Windows or shell command on Linux
-                    sh 'mvn clean package'
+                bat 'mvn clean package
             }
         }
 
