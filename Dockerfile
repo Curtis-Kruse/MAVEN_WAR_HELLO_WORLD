@@ -2,7 +2,7 @@
 FROM tomcat:8
 
 # Set the maintainer information
-LABEL maintainer="Curtis Kruse <curtis.krus@efre.net>
+LABEL maintainer="Curtis Kruse <curtis.krus@efre.net>"
 
 # Copy the WAR file from the target directory to the webapps directory of Tomcat
 COPY target/spring-boot-deployment.war C:\Users\t5941ck\Desktop\apache-tomcat-9.0.69\apache-tomcat-9.0.69\webapps
