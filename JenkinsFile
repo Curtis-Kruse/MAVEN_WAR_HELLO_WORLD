@@ -21,7 +21,7 @@ pipeline {
                 echo 'Building Docker image...'
                 script {
                     def dockerHubCredentials = credentials('dockerhub-credentials')
-                    sh "docker build -t curtiskruse-final ."
+                    sh "docker build -t curtiskruse123/finalproj ."
                 }
             }
         }
@@ -39,7 +39,7 @@ pipeline {
 
                 // Push Docker image to DockerHub
                 echo 'Pushing Docker image to DockerHub...'
-                sh 'docker push curtiskruse-final'
+                sh 'docker push curtiskruse123/finalproj'
             }
         }
 
