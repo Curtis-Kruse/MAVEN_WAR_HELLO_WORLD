@@ -27,21 +27,24 @@ pipeline {
         }
 
         stage('DockerHub Push') {
-            steps {
-                echo '=== DockerHub Push ==='
-                // Log in to DockerHub using credentials
-                script {
-                    def dockerHubCredentials = credentials('dockerhub-credentials')
-                    withCredentials([usernamePassword(credentialsId: dockerHubCredentials.id, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                    }
-                }
-
-                // Push Docker image to DockerHub
-                echo 'Pushing Docker image to DockerHub...'
-                sh 'docker push curtiskruse123/finalproj'
+    steps {
+        echo '=== DockerHub Push ==='
+        // Log in to DockerHub using credentials
+        script {
+            def dockerHubCredentials = credentials('dockerhub-credentials')
+            withCredentials([usernamePassword(credentialsId: dockerHubCredentials.id, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
             }
         }
+
+        // Push Docker image to DockerHub
+        echo 'Pushing Docker image to DockerHub...'
+        script {
+            sh 'docker push curtiskruse123/finalproj'
+        }
+    }
+}
+
 
         stage('Docker Deploy') {
             steps {
