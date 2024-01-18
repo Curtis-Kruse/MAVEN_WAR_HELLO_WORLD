@@ -46,7 +46,7 @@ pipeline {
                 // Use Ansible to deploy the Docker container
                 echo 'Running Ansible playbook...'
                 ansiblePlaybook(
-                    playbook: deploy-docker.yml
+                    playbook: deploy-docker.yml,
                     inventory: dev.inv
                 )
             }
