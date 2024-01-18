@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo '=== DockerHub Push ==='
                 // Log in to DockerHub using environment variables
-                sh "docker login -u curtiskruse123 -p Kori!09279"
+                sh "docker login -u curtiskruse123 -p Efrei1234"
 
                 // Push Docker image to DockerHub
                 echo 'Pushing Docker image to DockerHub...'
@@ -46,8 +46,8 @@ pipeline {
                 // Use Ansible to deploy the Docker container
                 echo 'Running Ansible playbook...'
                 ansiblePlaybook(
-                    playbook: 'deploy-docker.yml',
-                    inventory: 'dev.inv'
+                    playbook: deploy-docker.yml
+                    inventory: dev.inv
                 )
             }
         }
