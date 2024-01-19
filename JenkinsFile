@@ -46,8 +46,9 @@ pipeline {
                 // Use Ansible to deploy the Docker container
                 echo 'Running Ansible playbook...'
                 ansiblePlaybook credentialsId: 'ansiblelogin', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
-                )
+                
             }
         }
     }
+}
 
