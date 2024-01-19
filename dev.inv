@@ -1,2 +1,2 @@
 [dev]
-192.168.0.37 ansible_user=eastih
+192.168.0.37 ansible_user=parallels
