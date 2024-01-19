@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo '=== DockerHub Push ==='
                 // Log in to DockerHub using environment variables
-                sh "docker login -u curtiskruse123 -p dckr_pat_QsY4Oatjvmoxlg45z2fcLzU0PPY"
+                sh "docker login -u curtiskruse123 -p Efrei1234"
 
                 // Push Docker image to DockerHub
                 echo 'Pushing Docker image to DockerHub...'
