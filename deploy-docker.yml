@@ -1,5 +1,5 @@
 ---
-- hosts: linuxclient1
+- hosts: 192.168.0.37
   become: true
   become_user: root
   tasks:
@@ -37,6 +37,6 @@
 
     - name: Start the container using docker_container
       docker_container:
-        name: your_container_name
+        name: finalcontainer
         state: started
 
