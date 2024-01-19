@@ -1,5 +1,5 @@
 # Use the official Tomcat 8 image as the base image
-FROM tomcat:8
+FROM tomcat:9.0
 
 # Set the maintainer information
 LABEL maintainer="Curtis Kruse <curtis.krus@efre.net>"
