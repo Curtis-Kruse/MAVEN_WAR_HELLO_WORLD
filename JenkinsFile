@@ -24,7 +24,7 @@ pipeline {
                 echo '=== Docker Build ==='
                 // Build Docker image from the WAR file
                 echo 'Building Docker image...'
-                sh "docker build -t curtiskruse123/finalprojtest ."
+                sh "docker build -t curtiskruse123/finalproj ."
             }
         }
 
@@ -32,11 +32,11 @@ pipeline {
             steps {
                 echo '=== DockerHub Push ==='
                 // Log in to DockerHub using environment variables
-                sh "docker login -u curtiskruse123 -p dckr_pat_k4eSUX9V-Wcdq0GUmyEBsr1FCuU"
+                sh "docker login -u curtiskruse123 -p Efrei123"
 
                 // Push Docker image to DockerHub
                 echo 'Pushing Docker image to DockerHub...'
-                sh 'docker push curtiskruse123/finalprojtest'
+                sh 'docker push curtiskruse123/finalproj'
             }
         }
 
