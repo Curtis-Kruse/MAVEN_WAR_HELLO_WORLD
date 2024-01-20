@@ -42,8 +42,8 @@
       command: pip install --upgrade pip
 
       - name: Install docker-SDK
-      pip:
-        name: docker
+        pip:
+          name: docker
 
     - name: Log into Docker Hub registry using the docker_login module
       docker_login:
