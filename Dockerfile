@@ -7,8 +7,8 @@ LABEL maintainer="Curtis Kruse <curtis.krus@efre.net>"
 # Copy the WAR file from the target directory to the webapps directory of Tomcat
 ADD target/spring-boot-deployment.war /usr/local/tomcat/webapps
 
-# Expose the default Tomcat port (8088)
-EXPOSE 8088
+# Expose the default Tomcat port (8080)
+EXPOSE 8080
 
 # Start Tomcat
 CMD ["catalina.sh", "run"]
