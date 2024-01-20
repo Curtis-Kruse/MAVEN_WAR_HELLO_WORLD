@@ -24,18 +24,22 @@
         state: started
         enabled: true
 
-    - name: Install Python 3 and pip
+    - name: Install Python
       yum:
         name:
-          - python3
-          - python3-pip
-        state: present
+          - python
+        state: present      
 
-        - name: Install Python libraries for Docker
-          pip:
-            name:
-              - docker
-              - requests
+    - name: Download get-pip.py
+      get_url:
+        url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
+        dest: /tmp/get-pip.py
+
+    - name: Install pip
+      command: python /tmp/get-pip.py
+
+    - name: Upgrade pip
+      command: pip install --upgrade pip
 
     - name: Log into Docker Hub registry using the docker_login module
       docker_login:
