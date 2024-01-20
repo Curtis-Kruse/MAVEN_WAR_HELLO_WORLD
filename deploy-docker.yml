@@ -24,6 +24,22 @@
         state: started
         enabled: true
 
+    - name: Install required Python libraries for Docker
+      block:
+        - name: Install Python 3 and pip
+          package:
+            name: python3
+            state: present
+
+        - name: Install Python libraries for Docker
+          pip:
+            name:
+              - docker
+              - requests
+
+      become_user: "{{ ansible_ssh_user }}"
+      become_method: sudo
+
     - name: Log into Docker Hub registry using the docker_login module
       docker_login:
         username: curtiskruse123
@@ -39,4 +55,3 @@
       docker_container:
         name: finalcontainer
         state: started
-
