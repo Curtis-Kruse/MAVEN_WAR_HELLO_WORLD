@@ -24,12 +24,12 @@
         state: started
         enabled: true
 
-    - name: Install required Python libraries for Docker
-      block:
-        - name: Install Python 3 and pip
-          package:
-            name: python3
-            state: present
+    - name: Install Python 3 and pip
+      yum:
+        name:
+          - python3
+          - python3-pip
+        state: present
 
         - name: Install Python libraries for Docker
           pip:
