@@ -56,10 +56,10 @@
         image: curtiskruse123/finalproj
         state: started
 
-- name: Start the container using docker_container
-  docker_container:
-    name: finalcontainer
-    image: curtiskruse123/finalproj
-    state: started
-    ports:
-      - "8080:8080"
+    - name: Start the container using docker_container
+      docker_container:
+        name: finalcontainer
+        image: curtiskruse123/finalproj
+        state: started
+        ports:
+          - "8080:8080"
