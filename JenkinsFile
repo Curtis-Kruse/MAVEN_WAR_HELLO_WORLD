@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'your_dockerhub_username'
         DOCKER_PASSWORD = 'your_dockerhub_password'
+        ANSIBLE_HOST_KEY_CHECKING = 'False'
     }
 
     tools {
