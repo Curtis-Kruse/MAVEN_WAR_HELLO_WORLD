@@ -1,9 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_USERNAME = 'your_dockerhub_username'
-        DOCKER_PASSWORD = 'your_dockerhub_password'
+    environment {      
         ANSIBLE_HOST_KEY_CHECKING = 'False'
     }
 
@@ -32,7 +30,7 @@ pipeline {
         stage('DockerHub Push') {
             steps {
                 echo '=== DockerHub Push ==='
-                // Log in to DockerHub using environment variables
+                // Log in to DockerHub using token
                 sh "docker login -u curtiskruse123 -p dckr_pat_2FvrvjCvLyaJ84Tzj4pKDoeV6c0"
 
                 // Push Docker image to DockerHub
